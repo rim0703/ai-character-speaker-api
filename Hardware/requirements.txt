@@ -1,0 +1,5 @@
+subprocess
+curses
+opencv-python
+preferredsoundplayer
+gtts
