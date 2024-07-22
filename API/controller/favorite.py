@@ -1,8 +1,6 @@
 from fastapi import APIRouter, Body
-from fastapi.encoders import jsonable_encoder
 
 from repository.voice import find_favorite_voices, update_favorite_voice
-from utils.hardwareService import sendVoiceToHardwareService
 from common.response import Response
 
 router = APIRouter()
