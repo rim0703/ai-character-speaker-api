@@ -2,8 +2,9 @@ from fastapi import APIRouter, Body
 from fastapi.encoders import jsonable_encoder
 
 from repository.device import find_all_devices, find_one_device, create_device
-from models.device import Device, UpdateDevice, Response, ErrorResponse, CreateDevice
+from models.device import CreateDevice
 from utils.hardwareService import checkHardwareStatusService
+from common.response import Response
 
 router = APIRouter()
 
