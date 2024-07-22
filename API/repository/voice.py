@@ -6,6 +6,11 @@ def voice_helper(voice) -> dict:
         "voice_id": str(voice["_id"]),
         "character": str(voice["character"]),
         "text": str(voice["text"]),
+        "file_path": str(voice["file_path"]),
+        "created_at": str(voice["created_at"]),
+        "favorite": dict(voice["favorite"]),
+        "schedule": dict(voice["schedule"]),
+        "status": str(voice["status"]),
     }
 
 
@@ -25,3 +30,11 @@ async def create_voice(new_voice):
     # TODO: play the voice
 
     return voice_helper(new_voice)
+
+
+async def find_all_voices():
+    voice = voice_repository()
+    voice_list = []
+    async for v in voice.find():
+        voice_list.append(voice_helper(v))
+    return voice_list
