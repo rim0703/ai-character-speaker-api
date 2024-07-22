@@ -4,7 +4,8 @@ from fastapi.encoders import jsonable_encoder
 from repository.voice import create_voice, find_all_voices
 from models.voice import Voice, CreateVoice
 from utils.hardwareService import sendVoiceToHardwareService
-from common.response import Response, ErrorResponse
+from common.response import Response
+
 
 router = APIRouter()
 
@@ -13,6 +14,8 @@ router = APIRouter()
 async def create_new_voice(voice: CreateVoice = Body(...)):
     voice = jsonable_encoder(voice)
     new_voice = await create_voice(voice)
+    # TODO: connect to hardware speaker
+
     return Response(new_voice, "success")
 
 

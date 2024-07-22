@@ -1,13 +1,16 @@
 from common.client import connectDB
+from bson.objectid import ObjectId
+import time
 
 
 def voice_helper(voice) -> dict:
     return {
         "voice_id": str(voice["_id"]),
         "character": str(voice["character"]),
-        "text": str(voice["text"]),
+        "content": str(voice["content"]),
         "file_path": str(voice["file_path"]),
         "created_at": str(voice["created_at"]),
+        "updated_at": str(voice["updated_at"]),
         "favorite": dict(voice["favorite"]),
         "schedule": dict(voice["schedule"]),
         "status": str(voice["status"]),
@@ -38,3 +41,24 @@ async def find_all_voices():
     async for v in voice.find():
         voice_list.append(voice_helper(v))
     return voice_list
+
+
+async def find_favorite_voices():
+    voice = voice_repository()
+    voice_list = []
+    async for v in voice.find():
+        if v["favorite"]["like"]:
+            voice_list.append(voice_helper(v))
+    return voice_list
+
+
+async def update_favorite_voice(id):
+    voice = voice_repository()
+    voice_one = await voice.find_one({"_id": ObjectId(id)})
+    if bool(voice_one["favorite"]["like"]):
+        voice_one["favorite"]["like"] = False
+    else:
+        voice_one["favorite"]["like"] = True
+    voice_one["updated_at"] = str(int(time.time()))
+    voice.update_one({"_id": ObjectId(id)}, {"$set": voice_one})
+    return voice_helper(voice_one)

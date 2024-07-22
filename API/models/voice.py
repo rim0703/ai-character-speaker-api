@@ -7,9 +7,10 @@ from models.schedule import Schedule
 
 class Voice(BaseModel):
     character: str = Field(...)
-    text: str = Field(...)
+    content: str = Field(...)
     file_path: str = ""
     created_at: str = str(int(time.time()))
+    updated_at: str = str(int(time.time()))
     favorite: Union[Favorite, None] = None
     schedule: Union[Schedule, None] = None
     status: str = ""
@@ -17,9 +18,10 @@ class Voice(BaseModel):
 
 class CreateVoice(BaseModel):
     character: str = Field(...)
-    text: str = Field(...)
+    content: str = Field(...)
     file_path: str = ""
     created_at: str = str(int(time.time()))
+    updated_at: str = str(int(time.time()))
     favorite: Union[Favorite, None] = None
     schedule: Union[Schedule, None] = None
     status: str = ""
