@@ -8,19 +8,22 @@ import time
 ip_reader = "ip.mp3"
 directory_path = "/home/willtek/lge/voice"
 
-connected = False
+connected = True
 if __name__ == "__main__":
     default_image_path = "./img/default.png"
     showCharacter(default_image_path)
 
-    if not connected:
-        deviceIPcheck()
+    """
+        [If Needed] Implement for checking device IP
+    """
+    # if not connected:
+    #     deviceIPcheck()
 
-        while os.path.exists(ip_reader):
-            connected = False
-            time.sleep(3)  # 3초에 한번 출력
-            playsound(ip_reader)
-        connected = True
+    #     while os.path.exists(ip_reader):
+    #         connected = False
+    #         time.sleep(3)  # 3초에 한번 출력
+    #         playsound(ip_reader)
+    #     connected = True
 
     while connected:
         time.sleep(3)
