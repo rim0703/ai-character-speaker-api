@@ -9,8 +9,8 @@ class Voice(BaseModel):
     character: str = Field(...)
     content: str = Field(...)
     file_path: str = ""
-    created_at: str = str(int(time.time()))
-    updated_at: str = str(int(time.time()))
+    created_at: int = int(time.time())
+    updated_at: int = int(time.time())
     favorite: Union[Favorite, None] = None
     schedule: Union[Schedule, None] = None
     status: str = ""
@@ -19,9 +19,9 @@ class Voice(BaseModel):
 class CreateVoice(BaseModel):
     character: str = Field(...)
     content: str = Field(...)
-    file_path: str = ""
-    created_at: str = str(int(time.time()))
-    updated_at: str = str(int(time.time()))
-    favorite: Union[Favorite, None] = None
+
+
+class CreateScheduleVoice(BaseModel):
+    character: str = Field(...)
+    content: str = Field(...)
     schedule: Union[Schedule, None] = None
-    status: str = ""
